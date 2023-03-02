@@ -1,0 +1,20 @@
+name: 1- 🔎 Get Started
+
+on:
+  push:
+    branches: [ "demo-ci" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 🐳 Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+      
+      - name: 👟 Run a one-line script
+        run: echo Hello world!
