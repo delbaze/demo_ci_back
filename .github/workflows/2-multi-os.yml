@@ -1,0 +1,40 @@
+
+name: 2- 🦑 Multi OS & Versions
+
+on:
+  push:
+    branches: [ "demo-ci" ]
+  pull_request:
+    branches: [ "demo-ci" ]
+ 
+  workflow_dispatch:
+
+jobs:
+    exemple_multi_version:
+        name: 🐙 Use many os & node versions
+        strategy:
+          fail-fast: false 
+          matrix:
+            os: [windows-latest, ubuntu-latest]
+            node: [12, 14, 16]
+            include:
+              - os: windows-latest
+                node: 16
+                npm: 6
+
+        runs-on: ${{ matrix.os }}
+        steps:
+          - name: ⚙️ Setup node
+            uses: actions/setup-node@v3
+            with:
+              node-version: ${{ matrix.node }}
+        
+          - name: 🔧 only install on windows & node version is 16
+            if: ${{ matrix.npm }}
+            run: npm install -g npm@${{ matrix.npm }}
+
+          - name: 👀 Read npm version 
+            run: npm --version
+
+          - name: 🔖 Read node version 
+            run: node -v
