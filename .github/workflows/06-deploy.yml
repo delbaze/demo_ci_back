@@ -30,6 +30,6 @@ jobs:
         with:
           context: ./
           push: true
-          tags: delbaze/app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo-back:latest
 
 
