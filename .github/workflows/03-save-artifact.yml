@@ -1,0 +1,21 @@
+name: 03-💾 Save artifacts
+
+on:
+  push:
+    branches: ["demo-ci"]
+  
+  workflow_dispatch:
+  
+
+jobs:
+  deploy:
+    name: 🚚 test artifact
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: mkdir -p artifact
+    - run: echo hello > artifact/hello.txt
+    - uses: actions/upload-artifact@v3
+      with:
+        name: mon-artifact
+        path: artifact/hello.txt
