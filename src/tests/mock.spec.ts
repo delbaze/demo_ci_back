@@ -4,6 +4,8 @@ import { faker } from "@faker-js/faker";
 const typeDefs = gql`
   type Query {
     listUsers: [User]
+    hello: String
+    user: User
   }
   type User {
     nom: String
@@ -18,6 +20,7 @@ const resolvers = {
 };
 
 const mocks = {
+  String: "Coucou",
   User: () => ({ nom: faker.name.firstName(), prenom: faker.name.lastName() }),
 };
 const GET_USER = gql`
@@ -47,3 +50,5 @@ test("Test", async () => {
   });
   expect(result.data?.listUsers).not.toHaveLength(0);
 });
+
+afterAll(() => setTimeout(() => process.exit(), 1000))
