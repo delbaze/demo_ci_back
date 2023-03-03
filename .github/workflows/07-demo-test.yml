@@ -1,0 +1,20 @@
+name: deploy
+
+on:
+    push:
+      branches: ["test-demo"]
+
+    workflow_dispatch:
+      
+jobs:
+
+  demo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Lancement des tests
+        run: npm i && npm test
+
+
