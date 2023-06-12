@@ -6,6 +6,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { WilderResolver } from "./resolver/wilder.resolver";
 import { buildSchema } from "type-graphql";
 import datasource from "./lib/datasource";
+console.log("COUCOU");
 
 const start = async (): Promise<void> => {
   const schema = await buildSchema({ resolvers: [WilderResolver], validate: false});
