@@ -24,4 +24,7 @@ jobs:
 
       - name: 🛑 This is the "else" part
         if: ${{ env.IS_OK == 'false' || failure() }}
-        run: echo The condition was not met.
+        run: | 
+            echo The condition was not met.
+            error "An error occurred in this step."
+        
