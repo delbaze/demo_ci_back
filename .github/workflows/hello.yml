@@ -2,9 +2,11 @@ name: 1- 🔎 Get Started
 
 on:
   push:
-    branches: [ "demo-test-27" ]
+    branches: ["demo-test-27"]
 
   workflow_dispatch:
+env:
+  IS_OK: false
 
 jobs:
   build:
@@ -15,6 +17,7 @@ jobs:
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
-      
+
       - name: 👟 Run a one-line script
+        if: ${{ env.IS_OK == 'false' && success() }}
         run: echo Hello world 😁!
