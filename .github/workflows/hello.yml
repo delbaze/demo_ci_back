@@ -19,5 +19,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 👟 Run a one-line script
-        if: ${{ env.IS_OK == 'false' && success() }}
+        if: ${{ env.IS_OK == 'true' && success() }}
         run: echo Hello world 😁!
+
+      - name: 🛑 This is the "else" part
+        if: ${{ env.IS_OK == 'false' || failure() }}
+        run: echo The condition was not met.
