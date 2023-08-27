@@ -24,7 +24,10 @@ jobs:
 
       - name: 🛑 This is the "else" part
         if: ${{ env.IS_OK == 'false' || failure() }}
-        run: | 
-            echo The condition was not met.
-            echo "::error::An error occurred in this step."
-        
+        run: |
+            echo "::error file={name},line={line},endLine={endLine},title={title}::{message}"
+            exit 1
+        # uses: actions/github-script@v3
+        # with:
+        #     script: |
+        #         core.setFailed('Il y eu une erreur, IS_OK est false!')
